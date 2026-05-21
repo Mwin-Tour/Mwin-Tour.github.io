@@ -145,16 +145,79 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    .nav-links a { font-size: 0.7rem; }
-    .hero { padding: 6rem 1.5rem 3rem; }
-    .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; margin-top: 3rem; }
-    section { padding: 5rem 1.5rem; }
+  /* ── TABLET (≤ 900px) ── */
+  @media (max-width: 900px) {
+    .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 3rem; }
+    .stat { text-align: left; }
     .exp-grid { grid-template-columns: 1fr; gap: 3rem; }
     .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── MOBILE (≤ 640px) ── */
+  @media (max-width: 640px) {
+    /* curseur désactivé sur touch */
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto; }
+    a, button { cursor: pointer; }
+
+    /* nav : logo + hamburger caché, liens en ligne réduits */
+    nav { padding: 0.9rem 1.2rem; gap: 0.5rem; flex-wrap: wrap; }
+    .nav-logo { font-size: 1rem; }
+    .nav-links { gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.04em; }
+
+    /* hero */
+    .hero { padding: 6.5rem 1.2rem 3rem; min-height: auto; }
+    .hero-name { font-size: clamp(2.6rem, 12vw, 4rem); }
+    .hero-tagline { font-size: 0.95rem; }
+    .hero-badge { font-size: 0.62rem; padding: 0.35rem 0.8rem; }
+    .hero-ctas { flex-direction: column; gap: 0.75rem; }
+    .btn-primary, .btn-outline { text-align: center; padding: 0.85rem 1.5rem; font-size: 0.85rem; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 1.2rem; margin-top: 2.5rem; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.6rem; }
+
+    /* sections */
+    section { padding: 4rem 1.2rem; }
+    .section-title { font-size: 1.7rem; margin-bottom: 2rem; }
+
+    /* skills */
+    .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .skill-card { padding: 1.4rem; }
+
+    /* projects */
+    .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project-visual { height: 140px; }
+    .project-body { padding: 1.2rem; }
+    .project-title { font-size: 1rem; }
+    .project-actions { flex-wrap: wrap; }
+    .btn-github, .btn-github-star { font-size: 0.68rem; padding: 0.5rem 0.85rem; }
+
+    /* timeline */
+    .timeline { padding-left: 1.5rem; }
+    .timeline-item { padding: 0 0 2rem 1.5rem; }
+    .timeline-item::before { left: -1.5rem; width: 9px; height: 9px; transform: translateX(-4px); }
+    .timeline-role { font-size: 0.95rem; }
+    .timeline-desc { font-size: 0.82rem; }
+    .exp-col-title { font-size: 0.65rem; }
+
+    /* contact */
+    .contact-link { font-size: 0.82rem; padding: 0.8rem 1rem; }
+    .form-input, .form-textarea { font-size: 0.85rem; }
+
+    /* footer */
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem 1.2rem; font-size: 0.65rem; }
+  }
+
+  /* ── TRÈS PETIT MOBILE (≤ 380px) ── */
+  @media (max-width: 380px) {
+    .nav-links { display: none; } /* trop étroit pour afficher les liens */
+    .hero-name { font-size: 2.4rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-actions { flex-direction: column; }
+    .btn-github { justify-content: center; }
+    .btn-github-star { justify-content: center; }
   }
 </style>
 </head>
@@ -186,11 +249,11 @@
     </div>
     <h1 class="hero-name">
       Futur<br>
-      <span class="highlight">Artificial intelligence</span> &amp;<br>
-      <span class="highlight2">Data science Engineer</span>
+      <span class="highlight">Artificial Intelligence</span> &amp;<br>
+      <span class="highlight2">Data Science Engineer</span>
     </h1>
     <p class="hero-tagline">
-      Ingénieur de conception en formation, je transforme des données complexes en solutions intelligentes, du preprocessing jusqu'au déploiement de modèles.
+      Ingénieur de conception en formation — je transforme des données complexes en solutions intelligentes, du preprocessing jusqu'au déploiement de modèles.
     </p>
     <div class="hero-ctas">
       <a href="#projets" class="btn-primary">Voir mes projets</a>
@@ -324,11 +387,11 @@
             <span class="stack-pill">Python</span>
           </div>
           <div class="project-actions">
-            <a href="https://github.com/Mwin-Tour/SentimentMCP.git" target="_blank" rel="noopener" class="btn-github">
+            <a href="https://github.com/Mwin-Tour/SentimentMCP" target="_blank" rel="noopener" class="btn-github">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
               Voir le code
             </a>
-            <a href="https://github.com/Mwin-Tour/SentimentMCP.git" target="_blank" rel="noopener" class="btn-github-star">
+            <a href="https://github.com/Mwin-Tour/SentimentMCP" target="_blank" rel="noopener" class="btn-github-star">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Star
             </a>
@@ -354,11 +417,11 @@
             <span class="stack-pill">Python</span>
           </div>
           <div class="project-actions">
-            <a href="https://github.com/Mwin-Tour/CNN.git" target="_blank" rel="noopener" class="btn-github">
+            <a href="https://github.com/Mwin-Tour/CNN" target="_blank" rel="noopener" class="btn-github">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
               Voir le code
             </a>
-            <a href="https://github.com/Mwin-Tour/CNN.git" target="_blank" rel="noopener" class="btn-github-star">
+            <a href="https://github.com/Mwin-Tour/CNN" target="_blank" rel="noopener" class="btn-github-star">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Star
             </a>
@@ -385,11 +448,11 @@
             <span class="stack-pill">SVM</span>
           </div>
           <div class="project-actions">
-            <a href="https://github.com/Mwin-Tour/churn-prediction-ml-dl.git" target="_blank" rel="noopener" class="btn-github">
+            <a href="https://github.com/Mwin-Tour/churn-prediction-ml-dl" target="_blank" rel="noopener" class="btn-github">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
               Voir le code
             </a>
-            <a href="https://github.com/Mwin-Tour/churn-prediction-ml-dl.git" target="_blank" rel="noopener" class="btn-github-star">
+            <a href="https://github.com/Mwin-Tour/churn-prediction-ml-dl" target="_blank" rel="noopener" class="btn-github-star">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Star
             </a>
@@ -480,7 +543,7 @@
           <div class="timeline-role">Cycle Ingénieur de Conception — 3ème année</div>
           <div class="timeline-company">
             <span class="timeline-badge" style="background: rgba(59,244,251,0.1); color: var(--accent3); border: 1px solid rgba(59,244,251,0.25);">Bac+5</span>
-            Ecole Polytechnique de Ouagadougou
+            Grande École d'Ingénieurs · Ecole Polytechnique de Ouagadougou
           </div>
           <div class="timeline-desc">Spécialisation en Data Science, Intelligence Artificielle et systèmes embarqués. Approfondissement en apprentissage automatique et traitement de données massives.</div>
         </div>
@@ -490,7 +553,7 @@
           <div class="timeline-role">Cycle Ingénieur de Conception — 2ème année</div>
           <div class="timeline-company">
             <span class="timeline-badge" style="background: rgba(59,244,251,0.1); color: var(--accent3); border: 1px solid rgba(59,244,251,0.25);">Bac+4</span>
-            Ecole Polytechnique de Ouagadougou
+            Grande École d'Ingénieurs · Ecole Polytechnique de Ouagadougou
           </div>
           <div class="timeline-desc">Algorithmique avancée, architecture logicielle, bases de données et méthodes d'IA. Projets en équipe sur des cas concrets.</div>
         </div>
@@ -500,7 +563,7 @@
           <div class="timeline-role">Cycle Ingénieur de Conception — 1ère année</div>
           <div class="timeline-company">
             <span class="timeline-badge" style="background: rgba(59,244,251,0.1); color: var(--accent3); border: 1px solid rgba(59,244,251,0.25);">Bac+3</span>
-            Ecole Polytechnique de Ouagadougou
+            Grande École d'Ingénieurs · Ecole Polytechnique de Ouagadougou
           </div>
           <div class="timeline-desc">Fondamentaux du génie logiciel, mathématiques appliquées, programmation orientée objet et introduction aux systèmes d'information.</div>
         </div>
@@ -533,7 +596,7 @@
             <span class="timeline-badge" style="background: rgba(139,92,246,0.1); color: var(--accent4); border: 1px solid rgba(139,92,246,0.25);">Stage</span>
             DCSIC
           </div>
-          <div class="timeline-desc">Developpement d'application</div>
+          <div class="timeline-desc">Développement d'applications logicielles en environnement professionnel structuré. Conception de modules applicatifs, tests et intégration.</div>
         </div>
 
       </div>
@@ -545,7 +608,7 @@
           <span style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--accent5); text-transform:uppercase; letter-spacing:0.1em;">En cours · 2025 — 2026</span>
         </div>
         <div class="available-card-title">Recherche de stage / alternance</div>
-        <div class="available-card-sub">Disponible pour un stage de fin d'études en IA et DataScience . Ouvert aux opportunités locales et internationales.</div>
+        <div class="available-card-sub">Disponible pour un stage de fin d'études en IA et Data Science. Ouvert aux opportunités locales et internationales.</div>
       </div>
 
       <!-- Bloc compétences transversales -->
@@ -553,7 +616,7 @@
         <div style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--accent4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Langues &amp; soft skills</div>
         <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
           <span class="skill-tag" style="color:var(--text);">Français — Courant</span>
-          <span class="skill-tag" style="color:var(--text);">Anglais — Academique</span>
+          <span class="skill-tag" style="color:var(--text);">Anglais — Académique</span>
           <span class="skill-tag">Travail en équipe</span>
           <span class="skill-tag">Rigueur analytique</span>
           <span class="skill-tag">Résolution de problèmes</span>
@@ -571,13 +634,13 @@
   <h2 class="section-title">Travaillons ensemble</h2>
   <div class="contact-wrapper">
     <div class="contact-info">
-      <p>Vous avez un projet IA ambitieux ? Une idée à transformer en solution IA ? Je suis toujours partant pour des collaborations stimulantes et des nouvelles opportunités.</p>
+      <p>Vous avez un projet data ambitieux ? Une idée à transformer en solution IA ? Je suis toujours partant pour des collaborations stimulantes et des nouvelles opportunités.</p>
       <div class="contact-links">
-        <a href="mailto:votre@email.com" class="contact-link">
+        <a href="mailto:yvessome50@gmail.com" class="contact-link">
           <div class="contact-link-icon" style="background: rgba(255,95,87,0.1); color: #ff5f57;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-          yvessome50@email.com
+          yvessome50@gmail.com
         </a>
         <a href="https://linkedin.com/in/votre-profil" target="_blank" rel="noopener" class="contact-link">
           <div class="contact-link-icon" style="background: rgba(59,244,251,0.1); color: #3bf4fb;">
@@ -589,11 +652,11 @@
           <div class="contact-link-icon" style="background: rgba(139,92,246,0.1); color: #8b5cf6;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </div>
-          https://github.com/Mwin-Tour
+          github.com/Mwin-Tour
         </a>
       </div>
     </div>
-    <form class="contact-form" onsubmit="return false">
+    <form class="contact-form" action="https://formspree.io/f/maqkovgp" method="POST"></form>
       <div class="form-group">
         <label class="form-label">Nom</label>
         <input type="text" class="form-input" placeholder="Votre nom">
@@ -613,8 +676,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2026 — Mwin-Tour Yves Roland SOME</span>
-  <span>DataScience "" &amp; IA Engineer · Ouagadougou, BF</span>
+  <span>© 2026 — Yves Roland SOME</span>
+  <span>Data Science &amp; IA Engineer · Ouagadougou, BF</span>
   <span>Fait avec passion &amp; Python 🐍</span>
 </footer>
 
