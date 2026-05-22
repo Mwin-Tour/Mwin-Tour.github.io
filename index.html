@@ -47,7 +47,7 @@
   .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,244,251,0.08); border: 1px solid rgba(59,244,251,0.25); padding: 0.4rem 1rem; border-radius: 100px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
   .badge-dot { width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .hero-name { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s ease both; }
+  .hero-name { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 7rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s ease both; }
   .hero-name span.highlight { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .hero-name span.highlight2 { background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .hero-tagline { font-size: 1.15rem; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; }
@@ -169,7 +169,7 @@
 
     /* hero */
     .hero { padding: 6.5rem 1.2rem 3rem; min-height: auto; }
-    .hero-name { font-size: clamp(2.6rem, 12vw, 4rem); }
+    .hero-name { font-size: clamp(1.9rem, 9vw, 2.8rem); line-height: 1.05; word-break: break-word; }
     .hero-tagline { font-size: 0.95rem; }
     .hero-badge { font-size: 0.62rem; padding: 0.35rem 0.8rem; }
     .hero-ctas { flex-direction: column; gap: 0.75rem; }
@@ -271,7 +271,7 @@
     </div>
     <div class="stat">
       <div class="stat-num">2026</div>
-      <div class="stat-label">Diplôme ingénieur</div>
+      <div class="stat-label">Diplôme ingénieur de conception en préparation</div>
     </div>
   </div>
 </section>
@@ -656,20 +656,20 @@
         </a>
       </div>
     </div>
-    <form class="contact-form" action="https://formspree.io/f/maqkovgp" method="POST"></form>
+    <form class="contact-form" action="https://formspree.io/f/maqkovgp" method="POST">
       <div class="form-group">
         <label class="form-label">Nom</label>
-        <input type="text" class="form-input" placeholder="Votre nom">
+        <input type="text" name="nom" class="form-input" placeholder="Votre nom" required>
       </div>
       <div class="form-group">
         <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="votre@email.com">
+        <input type="email" name="email" class="form-input" placeholder="votre@email.com" required>
       </div>
       <div class="form-group">
         <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="Décrivez votre projet ou opportunité..."></textarea>
+        <textarea name="message" class="form-textarea" placeholder="Décrivez votre projet ou opportunité..." required></textarea>
       </div>
-      <button class="form-submit">Envoyer le message →</button>
+      <button type="submit" class="form-submit">Envoyer le message →</button>
     </form>
   </div>
 </section>
